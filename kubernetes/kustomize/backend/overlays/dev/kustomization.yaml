@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: gogonggo-qa
+# nameSuffix: -dev
+
+patchesStrategicMerge:
+- deployment.yaml
+- ingress.yaml
+
+resources:
+- ../../base
+
+images:
+- name: backend-img
+  newName: k-harbor-01.server.maas/public/backend-img
+  newTag: latest

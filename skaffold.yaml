@@ -1,12 +1,35 @@
 apiVersion: skaffold/v4beta12
 kind: Config
+
 build:
-  googleCloudBuild:
-    projectId: k8s-skaffold
   artifacts:
-  - image: skaffold-example
-    kaniko:
-      cache: {}
+    - image: backend-img
+      context: backend
+      hooks:
+        # after build lifecycle hook
+        after:
+        - command: 
+          - /bin/sh 
+          - -c
+          - "cat _kustomization.yaml | envsubst > kustomization.yaml"
+  tagPolicy:
+    sha256: {}
+
 manifests:
-  rawYaml:
-  - k8s-*
+  kustomize:
+    paths:
+    - kubernetes/kustomize/backend/overlays/dev
+
+deploy:
+  kubectl: {}
+
+profiles:
+  - name: qa
+    activation:
+      - env: KUBECONFIG='/home/nattawat.ujj/.kube/rke2-gong-kubeadm.conf'
+    deploy:
+      kubeContext: rke2-kubeadm
+    manifests:
+      kustomize:
+        paths:
+        - kubernetes/kustomize/backend/overlays/qa
