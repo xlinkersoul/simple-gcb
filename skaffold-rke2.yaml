@@ -1,11 +1,17 @@
 ---
-apiVersion: skaffold/v4beta11
+apiVersion: skaffold/v4beta12
 kind: Config
 build:
-  googleCloudBuild: {}
   artifacts:
     - image: backend-img
       context: backend
+      hooks:
+        # after build lifecycle hook
+        after:
+        - command: 
+          - /bin/sh 
+          - -c
+          - "cat _kustomization.yaml | envsubst > kustomization.yaml"
   tagPolicy:
     sha256: {}
 

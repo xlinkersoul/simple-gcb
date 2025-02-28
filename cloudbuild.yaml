@@ -6,10 +6,10 @@ steps:
       - 'dev'
       - 'https://github.com/xlinkersoul/simple-gcb.git'
 
-  - name: 'gcr.io/cloud-builders/bash'
-    args:
-      - '-c'
-      - 'ls -al'
+  - name: 'ubuntu'
+    script: |
+      ls -l
+    dir: '/workspace/simple-gcb'
 
 # Optionally, define a timeout for the build
 timeout: '600s'

@@ -48,3 +48,8 @@ TARGET_NAMESPACE=gogonggo-qa
 skaffold --default-repo="${SKAFFOLD_DEFAULT_REPO}" --namespace=${TARGET_NAMESPACE} run -p qa
 }
 ```
+
+# Google Build
+
+
+skaffold --default-repo=asia-southeast1-docker.pkg.dev/tidc-poc-gcp2/gogonggo build
