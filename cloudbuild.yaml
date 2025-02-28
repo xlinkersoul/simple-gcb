@@ -11,11 +11,40 @@ steps:
       ls -l
     dir: '/workspace/simple-gcb'
 
+  - name: gcr.io/k8s-skaffold/skaffold
+    args:
+      - skaffold
+      - build
+      - '--interactive=false'
+      - '--file-output=/workspace/artifacts.json'
+      - '--default-repo=asia-southeast1-docker.pkg.dev/$PROJECT_ID/gogonggo'
+    dir: '/workspace/simple-gcb'
+
+  - name: 'sonarsource/sonar-scanner-cli'
+    entrypoint: 'sh'
+    args:
+      - '-c'
+      - |
+        sonar-scanner \
+          -Dsonar.projectKey=key \
+          -Dsonar.organization=org \
+          -Dsonar.sources=. \
+          -Dsonar.host.url=sonar-url \
+          -Dsonar.login=abc
+    #       -Dsonar.login=$$SONAR_TOKEN
+    # secretEnv: ['SONAR_TOKEN']
+    dir: '/workspace/simple-gcb'
+
+# secrets:
+#   - kmsKeyName: projects/$PROJECT_ID/locations/global/keyRings/my-keyring/cryptoKeys/my-key
+#     secretEnv:
+#       SONAR_TOKEN: 'ENCRYPTED_SONAR_TOKEN'
+
 # Optionally, define a timeout for the build
-timeout: '600s'
+# timeout: '600s'
 
 # Optionally, specify images to push or artifacts to store
-images:
-  - 'gcr.io/x12345/simple-gcb-image'
+# images:
+#   - 'gcr.io/x12345/simple-gcb-image'
 
 #gcloud builds submit --region=us-west2 --config cloudbuild.yaml

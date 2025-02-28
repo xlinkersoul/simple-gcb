@@ -53,3 +53,5 @@ skaffold --default-repo="${SKAFFOLD_DEFAULT_REPO}" --namespace=${TARGET_NAMESPAC
 
 
 skaffold --default-repo=asia-southeast1-docker.pkg.dev/tidc-poc-gcp2/gogonggo build
+
+gcloud builds submit --config cloudbuild.yaml

@@ -6,6 +6,8 @@ build:
   artifacts:
     - image: backend-img
       context: backend
+      kaniko:
+        cache: {}
   tagPolicy:
     sha256: {}
 
