@@ -1,8 +1,0 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: backend-ingress
-spec:
-  ingressClassName: kong
-  rules:
-    - host: dev-backend-nodejs.gong.k8s.maas

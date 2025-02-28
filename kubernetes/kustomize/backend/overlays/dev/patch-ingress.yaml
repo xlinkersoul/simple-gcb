@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: backend-ingress
+  labels:
+    env: dev
+spec:
+  ingressClassName: kong
+  rules:
+    - host: dev-backend-nodejs.gong.k8s.maas
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: backend
+              port:
+                number: 3000

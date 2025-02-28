@@ -32,7 +32,14 @@ skaffold --default-repo="${SKAFFOLD_DEFAULT_REPO}" --namespace=${TARGET_NAMESPAC
 ```
 
 # QA
-
+## render
+```shell
+{
+SKAFFOLD_DEFAULT_REPO=k-harbor-01.server.maas/public
+TARGET_NAMESPACE=gogonggo-qa
+skaffold --default-repo="${SKAFFOLD_DEFAULT_REPO}" --namespace=${TARGET_NAMESPACE} render -p qa
+}
+```
 ## Run
 ```shell
 {

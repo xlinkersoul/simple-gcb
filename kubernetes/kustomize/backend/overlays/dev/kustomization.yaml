@@ -5,8 +5,8 @@ namespace: gogonggo-qa
 # nameSuffix: -dev
 
 patchesStrategicMerge:
-- deployment.yaml
-- ingress.yaml
+- patch-deployment.yaml
+- patch-ingress.yaml
 
 resources:
 - ../../base
