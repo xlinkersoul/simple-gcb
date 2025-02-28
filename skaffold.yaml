@@ -1,6 +1,6 @@
+---
 apiVersion: skaffold/v4beta12
 kind: Config
-
 build:
   artifacts:
     - image: backend-img

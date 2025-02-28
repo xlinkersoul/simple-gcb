@@ -1,0 +1,21 @@
+steps:
+  - name: 'gcr.io/cloud-builders/git'
+    args:
+      - 'clone'
+      - '--branch'
+      - 'dev'
+      - 'https://github.com/xlinkersoul/simple-gcb.git'
+
+  - name: 'gcr.io/cloud-builders/bash'
+    args:
+      - '-c'
+      - 'ls -al'
+
+# Optionally, define a timeout for the build
+timeout: '600s'
+
+# Optionally, specify images to push or artifacts to store
+images:
+  - 'gcr.io/x12345/simple-gcb-image'
+
+#gcloud builds submit --region=us-west2 --config cloudbuild.yaml
